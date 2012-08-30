@@ -1,0 +1,18 @@
+{
+  "schema_version": "1.0",
+  "packages": [
+    {
+      "name": "PHP Syntax Checker",
+      "description": "Check syntax error of PHP",
+      "author": "Naomichi Yamakita",
+      "platforms": {
+        "*": [
+          {
+            "version": "1.0",
+            "url": "https://nodeload.github.com/naomichi-y/php_syntax_checker/tree/v1.0.0"
+          }
+        ]
+      }
+    }
+  ]
+}

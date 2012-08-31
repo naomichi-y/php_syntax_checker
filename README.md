@@ -9,7 +9,7 @@ Very easy.
 Only have to save php file.
 If contains an error, a warning dialog will appear.
 
-![Screenshot](images/screenshot.png)
+![Screenshot](https://raw.github.com/naomichi-y/php_syntax_checker/master/images/screenshot.png)
 
 Licence
 -------

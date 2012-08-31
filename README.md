@@ -9,6 +9,8 @@ Very easy.
 Only have to save php file.
 If contains an error, a warning dialog will appear.
 
+![Screenshot](images/screenshot.png)
+
 Licence
 -------
 MIT Licence:

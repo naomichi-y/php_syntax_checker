@@ -5,7 +5,9 @@ When you save PHP file, perform syntax check of PHP.
 
 Usage notes
 -----------
-Just save the file!
+Very easy.
+Only have to save php file.
+If contains an error, a warning dialog will appear.
 
 Licence
 -------

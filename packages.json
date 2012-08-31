@@ -9,7 +9,7 @@
         "*": [
           {
             "version": "1.0",
-            "url": "https://raw.github.com/naomichi-y/php_syntax_checker/master/packages.json"
+            "url": "https://nodeload.github.com/naomichi-y/php_syntax_checker/zipball/v1.0.0"
           }
         ]
       }

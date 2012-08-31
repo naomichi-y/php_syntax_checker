@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.2",
   "packages": [
     {
       "name": "PHP Syntax Checker",

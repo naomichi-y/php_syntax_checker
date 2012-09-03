@@ -5,6 +5,7 @@
       "name": "PHP Syntax Checker",
       "description": "Check syntax error of PHP",
       "author": "Naomichi Yamakita",
+      "last_modified": "2012-09-01 00:00:00",
       "platforms": {
         "*": [
           {

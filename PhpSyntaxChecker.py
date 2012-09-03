@@ -1,4 +1,5 @@
-import sublime, sublime_plugin, os, commands, re, subprocess, sys
+import sublime, sublime_plugin
+import os, commands, re, subprocess, sys
 
 class PhpSyntaxChecker(sublime_plugin.EventListener):
   # Command refers to $PATH environment variable
@@ -13,7 +14,7 @@ class PhpSyntaxChecker(sublime_plugin.EventListener):
     root, extension = os.path.splitext(path)
 
     if extension in self.TARGET_SUFFIXES:
-      command = self.EXECUTE_COMMAND + " " + path
+      command = self.EXECUTE_COMMAND + " \"" + path + "\""
       proc = subprocess.Popen([command],
         shell=True,
         stdout=subprocess.PIPE,

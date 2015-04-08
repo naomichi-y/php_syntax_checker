@@ -1,6 +1,6 @@
 PHP Syntax Checker
 ==================
-This package is plugins for Sublime Text 2.
+This package is plugins for Sublime Text 2 and 3.
 When you save PHP file, perform syntax check of PHP.
 
 Usage notes
@@ -18,4 +18,4 @@ MIT Licence:
 Contacts
 --------
 Writen by:
- * Naomichi Yamakita - yamakita@dtx.co.jp
+ * Naomichi Yamakita - n.yamakita@gmail.com

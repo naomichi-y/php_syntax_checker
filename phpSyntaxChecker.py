@@ -16,20 +16,24 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
     if extension in self.TARGET_SUFFIXES:
       command = self.EXECUTE_COMMAND + " \"" + path + "\""
       proc = subprocess.Popen([command],
-        shell=True,
-        stdout=subprocess.PIPE,
-        stderr=subprocess.PIPE)
+        shell = True,
+        stdout = subprocess.PIPE,
+        stderr = subprocess.PIPE)
 
       response = proc.communicate()
       stdout = response[0]
       stderr = response[1]
 
-      stdout_data = re.sub(r"b'\\n|\\n", '', str(stdout))
-      stderr_data = re.sub(r"b'\\n|\\n", '', str(stderr))
+      if int(sublime.version()) > 3000:
+        stdout_data = self.sanitize(str(stdout))
+        stderr_data = self.sanitize(str(stderr))
 
+      else:
+        stdout_data = str(stdout)
+        stderr_data = str(stderr)
 
       if len(stderr):
-        sublime.error_message("Execute error:\n" + str(stderr))
+        sublime.error_message("Execute error:\n" + stderr_data)
 
       else:
         rc = re.compile("Parse error.* on line (\d+)")
@@ -46,3 +50,11 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
           sel.add(sublime.Region(offset))
 
           view.show(offset)
+
+  def sanitize(self, data):
+    data = re.sub(r'^b[\'"]', '', data)
+    data = re.sub(r'[\'"]$', '', data)
+    data = re.sub(r'\\n', "\n", data)
+
+    return data
+

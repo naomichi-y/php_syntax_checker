@@ -21,26 +21,24 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
         stderr = subprocess.PIPE)
 
       response = proc.communicate()
-      stdout = response[0]
-      stderr = response[1]
 
       if int(sublime.version()) > 3000:
-        stdout_data = self.sanitize(str(stdout))
-        stderr_data = self.sanitize(str(stderr))
+        stdout = self.sanitize(str(response[0]))
+        stderr = self.sanitize(str(response[1]))
 
       else:
-        stdout_data = str(stdout)
-        stderr_data = str(stderr)
+        stdout = str(response[0])
+        stderr = str(response[1])
 
       if len(stderr):
-        sublime.error_message("Execute error:\n" + stderr_data)
+        sublime.error_message("Execute error:\n" + stderr)
 
       else:
         rc = re.compile("Parse error.* on line (\d+)")
-        match = rc.search(stdout_data)
+        match = rc.search(stdout)
 
         if match != None:
-          sublime.error_message("PHP Syntax error:\n" + stdout_data)
+          sublime.error_message("PHP Syntax error:\n" + stdout)
 
           line = int(match.group(1)) - 1
           offset = view.text_point(line, 0)

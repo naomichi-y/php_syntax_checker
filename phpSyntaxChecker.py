@@ -15,7 +15,6 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
 
     if extension in self.TARGET_SUFFIXES:
       command = self.EXECUTE_COMMAND + " " + path
-      args = shlex.split(command, False, False)
       shell = True
 
       if sublime.platform() == "windows":
@@ -27,7 +26,7 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
           shell = False
 
       if int(sublime.version()) >= 3000:
-        params = args
+        params = shlex.split(command, False, False)
       else:
         params = [command]
 

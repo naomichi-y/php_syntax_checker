@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, sys, subprocess
+import os, re, sys, subprocess
 
 class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
   # Command refers to $PATH environment variable

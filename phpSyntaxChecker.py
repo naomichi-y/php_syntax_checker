@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, sys, subprocess, shlex
+import re, sys, subprocess
 
 class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
   # Command refers to $PATH environment variable
@@ -10,29 +10,20 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
   TARGET_SUFFIXES = [".php"]
 
   def on_post_save(self, view):
-    path = view.file_name()
-    root, extension = os.path.splitext(path)
+    file_path = view.file_name()
+    root, extension = os.path.splitext(file_path)
+    command_line = self.EXECUTE_COMMAND + " " + file_path
 
     if extension in self.TARGET_SUFFIXES:
-      command = self.EXECUTE_COMMAND + " " + path
-      shell = True
-
       if sublime.platform() == "windows":
         encoding = "sjis"
+
       else:
         encoding = "utf-8"
 
-        if int(sublime.version()) >= 3000:
-          shell = False
-
-      if int(sublime.version()) >= 3000:
-        params = shlex.split(command, False, False)
-      else:
-        params = [command]
-
       response = subprocess.Popen(
-        params,
-        shell=shell,
+        command_line,
+        shell=True,
         stdout = subprocess.PIPE,
         stderr = subprocess.PIPE).communicate()
 
@@ -57,4 +48,5 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
           sel.add(sublime.Region(offset))
 
           view.show(offset)
+
 

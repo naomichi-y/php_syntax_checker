@@ -10,7 +10,7 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
     command_line = self.EXECUTE_COMMAND + " " + file_path
     syntax = view.settings().get("syntax")
 
-    if syntax.find('PHP.tmLanguage'):
+    if syntax.find('PHP.tmLanguage') >= 0:
       response = subprocess.Popen(
         command_line,
         shell=True,

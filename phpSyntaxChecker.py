@@ -1,5 +1,5 @@
 import sublime, sublime_plugin
-import re, sys, subprocess
+import os, re, sys, subprocess
 
 class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
   # Command refers to $PATH environment variable
@@ -17,11 +17,7 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
         stdout = subprocess.PIPE,
         stderr = subprocess.PIPE).communicate()
 
-      if sublime.platform() == "windows":
-        encoding = "sjis"
-
-      else:
-        encoding = "utf-8"
+      encoding = sys.getfilesystemencoding()
 
       stdout = response[0].decode(encoding)
       stderr = response[1].decode(encoding)

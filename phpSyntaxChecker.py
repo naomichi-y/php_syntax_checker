@@ -1,31 +1,27 @@
 import sublime, sublime_plugin
-import os, re, sys, subprocess
+import re, sys, subprocess
 
 class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
   # Command refers to $PATH environment variable
   EXECUTE_COMMAND = "php -l"
 
-  # If want to add other extensions, please add array elements.
-  # [".php", ".twig", ...]
-  TARGET_SUFFIXES = [".php"]
-
   def on_post_save(self, view):
     file_path = view.file_name()
-    root, extension = os.path.splitext(file_path)
     command_line = self.EXECUTE_COMMAND + " " + file_path
+    syntax = view.settings().get("syntax")
 
-    if extension in self.TARGET_SUFFIXES:
-      if sublime.platform() == "windows":
-        encoding = "sjis"
-
-      else:
-        encoding = "utf-8"
-
+    if syntax.find('PHP.tmLanguage'):
       response = subprocess.Popen(
         command_line,
         shell=True,
         stdout = subprocess.PIPE,
         stderr = subprocess.PIPE).communicate()
+
+      if sublime.platform() == "windows":
+        encoding = "sjis"
+
+      else:
+        encoding = "utf-8"
 
       stdout = response[0].decode(encoding)
       stderr = response[1].decode(encoding)

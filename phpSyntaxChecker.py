@@ -7,7 +7,7 @@ class phpSyntaxCheckerCommand(sublime_plugin.EventListener):
 
   def on_post_save(self, view):
     file_path = view.file_name()
-    command_line = self.EXECUTE_COMMAND + " '" + file_path + "'"
+    command_line = self.EXECUTE_COMMAND + " \"" + file_path + "\""
     syntax = view.settings().get("syntax")
 
     if syntax.find('PHP.tmLanguage') >= 0 or syntax.find('PHP.sublime-syntax') >= 0:

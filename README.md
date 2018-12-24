@@ -10,6 +10,8 @@ If contains an error, a warning dialog will appear.
 
 ![Screenshot](https://raw.github.com/naomichi-y/php_syntax_checker/master/images/screenshot.png)
 
+A local PHP installation is required.
+
 Licence
 -------
 MIT Licence:
